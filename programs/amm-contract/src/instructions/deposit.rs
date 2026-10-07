@@ -41,7 +41,7 @@ pub fn process_deposit(ctx: Context<Deposit>, amount_a: u64, amount_b: u64) -> R
     let pool = &ctx.accounts.pool;
     let total_lp_supply = ctx.accounts.lp_mint.supply;
 
-    // Calculate lp shares to mint
+   
     let lp_to_mint: u64 = if total_lp_supply == 0 {
      
         let product = (amount_a as u128)
@@ -67,7 +67,7 @@ pub fn process_deposit(ctx: Context<Deposit>, amount_a: u64, amount_b: u64) -> R
 
     require!(lp_to_mint > 0, AmmError::ZeroLiquidityMinted);
 
-    // Transfer Token A from user to vault_a
+    
     let cpi_transfer_a = CpiContext::new(
         ctx.accounts.token_program.key(),
         Transfer {
@@ -78,7 +78,7 @@ pub fn process_deposit(ctx: Context<Deposit>, amount_a: u64, amount_b: u64) -> R
     );
     token::transfer(cpi_transfer_a, amount_a)?;
 
-    // Transfer Token B from user to vault_b
+   
     let cpi_transfer_b = CpiContext::new(
         ctx.accounts.token_program.key(),
         Transfer {

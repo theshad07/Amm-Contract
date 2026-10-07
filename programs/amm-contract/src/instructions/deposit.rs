@@ -41,7 +41,7 @@ pub fn process_deposit(ctx: Context<Deposit>, amount_a: u64, amount_b: u64) -> R
     let pool = &ctx.accounts.pool;
     let total_lp_supply = ctx.accounts.lp_mint.supply;
 
-    // Calculate LP shares to mint
+    // Calculate lp shares to mint
     let lp_to_mint: u64 = if total_lp_supply == 0 {
      
         let product = (amount_a as u128)
